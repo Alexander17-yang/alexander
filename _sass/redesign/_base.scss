@@ -171,7 +171,6 @@ html.dfs-cursor-on.dfs-dragging-scroll * {
   cursor: auto !important;
 }
 
-html.dfs-dragging-scroll #dfs-cursor,
-html.dfs-dragging-scroll #dfs-cursor-ring {
+html.dfs-dragging-scroll #dfs-cursor {
   opacity: 0 !important;
 }

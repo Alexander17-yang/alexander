@@ -61,65 +61,109 @@
   will-change: auto;
 }
 
-/* 自定义光标（桌面 fine pointer + 非 PRM 时由 site.js 挂载）
- * 双元素：实心点即时跟随（精度）+ 描边环滞后缓动（性格）。
- * 终端质感：hover 时点隐、环放大并变方角（选框/瞄准框）。
- * 近黑底上不用 mix-blend-mode（difference 对黑底几乎不反相 → 发暗）。
- * 定位走 translate（JS 每帧写），transform 留给 scale。 */
-#dfs-cursor,
-#dfs-cursor-ring {
+/* 蓝色箭头光标（桌面 fine pointer + 非 PRM 时由 site.js 挂载）。
+ * 定位走 translate，transform 只负责 hover / click 的缩放反馈。 */
+#dfs-cursor {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: var(--dfs-z-cursor);
   opacity: 0;
-  will-change: transform;
-}
-
-/* 点：小、实心、即时 */
-#dfs-cursor {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  border-radius: 50%;
-  background: var(--dfs-acc);
+  width: 24px;
+  height: 30px;
+  margin: -2px 0 0 -2px;
+  background: linear-gradient(135deg, #e8f7ff 0%, #69bdff 30%, #167dff 68%, #0754d8 100%);
+  clip-path: polygon(0 0, 0 25px, 7px 18.5px, 12.2px 29px, 17px 26.7px, 11.8px 16.8px, 23px 15.8px);
+  filter:
+    drop-shadow(0 0 1px rgba(235, 248, 255, 0.95))
+    drop-shadow(0 2px 2px rgba(0, 20, 58, 0.85))
+    drop-shadow(0 0 8px rgba(40, 145, 255, 0.75));
   transform: scale(1);
+  transform-origin: 2px 2px;
+  will-change: translate, transform;
   transition:
-    opacity 0.2s var(--dfs-ease-out),
-    transform 0.25s var(--dfs-ease-out);
+    opacity 0.16s var(--dfs-ease-out),
+    transform 0.18s var(--dfs-ease-out),
+    filter 0.18s var(--dfs-ease-out);
 
   &.is-live {
     opacity: 1;
   }
 
   &.is-live.is-hover {
-    transform: scale(0); /* 点隐，交给环 */
+    transform: scale(1.15);
+    filter:
+      drop-shadow(0 0 1px rgba(255, 255, 255, 1))
+      drop-shadow(0 2px 2px rgba(0, 20, 58, 0.85))
+      drop-shadow(0 0 13px rgba(48, 161, 255, 0.95));
+  }
+
+  &.is-clicking {
+    transform: scale(0.82);
   }
 }
 
-/* 环：大、描边、滞后跟随；hover 放大成方角选框 */
-#dfs-cursor-ring {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1.5px solid var(--dfs-acc-glow);
-  border-radius: 50%;
-  transform: scale(1);
-  transition:
-    opacity 0.2s var(--dfs-ease-out),
-    transform 0.3s var(--dfs-ease-out),
-    border-color 0.2s var(--dfs-ease-out),
-    border-radius 0.2s var(--dfs-ease-out);
+/* 点击火花：JS 在点击坐标生成一圈短粒子和中心冲击环。 */
+.dfs-click-spark,
+.dfs-click-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: calc(var(--dfs-z-cursor) - 1);
+}
 
-  &.is-live {
-    opacity: 0.9;
+.dfs-click-spark {
+  width: 3px;
+  height: 11px;
+  margin: -5.5px 0 0 -1.5px;
+  border-radius: 999px;
+  background: var(--spark-color, #5ab4ff);
+  box-shadow:
+    0 0 5px var(--spark-color, #5ab4ff),
+    0 0 11px rgba(34, 137, 255, 0.8);
+  transform-origin: 50% 50%;
+  animation: dfs-click-spark 0.62s cubic-bezier(0.12, 0.7, 0.2, 1) forwards;
+}
+
+.dfs-click-flash {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 2px solid #70c3ff;
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px rgba(78, 176, 255, 0.95),
+    inset 0 0 5px rgba(214, 242, 255, 0.85);
+  animation: dfs-click-flash 0.48s var(--dfs-ease-out) forwards;
+}
+
+@keyframes dfs-click-spark {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--spark-angle)) translateY(-4px) scaleY(0.35);
   }
 
-  &.is-live.is-hover {
-    transform: scale(1.7);
-    border-color: var(--dfs-acc);
-    border-radius: 6px; /* 终端选框质感 */
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateY(var(--spark-distance)) scaleY(0.08);
+  }
+}
+
+@keyframes dfs-click-flash {
+  0% {
+    opacity: 1;
+    transform: scale(0.25);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.7);
   }
 }
 

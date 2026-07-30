@@ -273,41 +273,49 @@
 
   /* ---- 自定义光标（桌面 fine pointer + motionOK） ---- */
   var cursorEl = null;
-  var ringEl = null;
-  var cursorRaf = null;
   var cursorLive = false;
-  var cx = 0; // 点
-  var cy = 0;
-  var rx = 0; // 环
-  var ry = 0;
-  var tx = 0; // 目标
-  var ty = 0;
   var HOVER_SEL = 'a, button, [role="button"], input, label, summary';
 
-  function cursorLoop() {
-    cx += (tx - cx) * 0.4; // 点：近即时
-    cy += (ty - cy) * 0.4;
-    rx += (tx - rx) * 0.15; // 环：滞后跟随
-    ry += (ty - ry) * 0.15;
-    cursorEl.style.translate = cx.toFixed(1) + 'px ' + cy.toFixed(1) + 'px';
-    ringEl.style.translate = rx.toFixed(1) + 'px ' + ry.toFixed(1) + 'px';
-    cursorRaf = requestAnimationFrame(cursorLoop);
-  }
-
   function onCursorMove(e) {
-    tx = e.clientX;
-    ty = e.clientY;
-    /* 首次出现（含跳转后的新页面）：点与环都直接落在指针处再淡入，
-       不从初始坐标插值飞过来 */
+    cursorEl.style.translate = e.clientX + 'px ' + e.clientY + 'px';
+    /* 首次出现（含跳转后的新页面）直接落在指针处再淡入。 */
     if (!cursorLive) {
       cursorLive = true;
-      cx = rx = tx;
-      cy = ry = ty;
-      cursorEl.style.translate = cx + 'px ' + cy + 'px';
-      ringEl.style.translate = rx + 'px ' + ry + 'px';
       cursorEl.classList.add('is-live');
-      ringEl.classList.add('is-live');
     }
+  }
+
+  function createClickSpark(x, y) {
+    var colors = ['#d9f3ff', '#8fd2ff', '#48a9ff', '#167dff'];
+    var count = 12;
+
+    for (var i = 0; i < count; i += 1) {
+      var spark = document.createElement('i');
+      var angle = (360 / count) * i + (Math.random() * 12 - 6);
+      var distance = 24 + Math.random() * 22;
+      spark.className = 'dfs-click-spark';
+      spark.setAttribute('aria-hidden', 'true');
+      spark.style.left = x + 'px';
+      spark.style.top = y + 'px';
+      spark.style.setProperty('--spark-angle', angle + 'deg');
+      spark.style.setProperty('--spark-distance', -distance + 'px');
+      spark.style.setProperty('--spark-color', colors[i % colors.length]);
+      spark.style.animationDelay = Math.random() * 0.035 + 's';
+      document.body.appendChild(spark);
+      spark.addEventListener('animationend', function () {
+        this.remove();
+      });
+    }
+
+    var flash = document.createElement('i');
+    flash.className = 'dfs-click-flash';
+    flash.setAttribute('aria-hidden', 'true');
+    flash.style.left = x + 'px';
+    flash.style.top = y + 'px';
+    document.body.appendChild(flash);
+    flash.addEventListener('animationend', function () {
+      this.remove();
+    });
   }
 
   /* 拖图片/链接会触发浏览器原生拖放，期间 pointermove 停发、光标冻结。
@@ -327,19 +335,25 @@
       (e.offsetX > t.clientWidth || e.offsetY > t.clientHeight)
     ) {
       document.documentElement.classList.add('dfs-dragging-scroll');
+      return;
+    }
+
+    if (e.button === 0) {
+      cursorEl.classList.add('is-clicking');
+      createClickSpark(e.clientX, e.clientY);
     }
   }
 
   function onCursorUp() {
     document.documentElement.classList.remove('dfs-dragging-scroll');
+    if (cursorEl) cursorEl.classList.remove('is-clicking');
   }
 
   /* 指针离开窗口：隐藏并复位，重新进入时同样直接落点 */
   function onCursorLeaveDoc(e) {
     if (!e.relatedTarget && cursorEl) {
       cursorLive = false;
-      cursorEl.classList.remove('is-live', 'is-hover');
-      ringEl.classList.remove('is-live', 'is-hover');
+      cursorEl.classList.remove('is-live', 'is-hover', 'is-clicking');
     }
   }
 
@@ -348,7 +362,6 @@
   function onCursorOver(e) {
     var hovering = !!(e.target.closest && e.target.closest(HOVER_SEL));
     cursorEl.classList.toggle('is-hover', hovering);
-    ringEl.classList.toggle('is-hover', hovering);
   }
 
   function setupCursor() {
@@ -356,11 +369,7 @@
     cursorEl = document.createElement('div');
     cursorEl.id = 'dfs-cursor';
     cursorEl.setAttribute('aria-hidden', 'true');
-    ringEl = document.createElement('div');
-    ringEl.id = 'dfs-cursor-ring';
-    ringEl.setAttribute('aria-hidden', 'true');
     document.body.appendChild(cursorEl);
-    document.body.appendChild(ringEl);
     document.documentElement.classList.add('dfs-cursor-on');
     window.addEventListener('pointermove', onCursorMove, { passive: true });
     document.addEventListener('pointerover', onCursorOver, { passive: true });
@@ -368,12 +377,10 @@
     document.addEventListener('dragstart', blockNativeDrag);
     document.addEventListener('pointerdown', onCursorDown, { passive: true });
     window.addEventListener('pointerup', onCursorUp, { passive: true });
-    cursorRaf = requestAnimationFrame(cursorLoop);
   }
 
   function teardownCursor() {
     if (!cursorEl) return;
-    cancelAnimationFrame(cursorRaf);
     window.removeEventListener('pointermove', onCursorMove);
     document.removeEventListener('pointerover', onCursorOver);
     document.removeEventListener('pointerout', onCursorLeaveDoc);
@@ -383,9 +390,10 @@
     document.documentElement.classList.remove('dfs-dragging-scroll');
     document.documentElement.classList.remove('dfs-cursor-on');
     cursorEl.remove();
-    if (ringEl) ringEl.remove();
+    document.querySelectorAll('.dfs-click-spark, .dfs-click-flash').forEach(function (el) {
+      el.remove();
+    });
     cursorEl = null;
-    ringEl = null;
   }
 
   /* ---- PRM 运行中切换：实时销毁 ---- */
