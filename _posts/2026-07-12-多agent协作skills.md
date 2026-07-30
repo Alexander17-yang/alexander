@@ -19,9 +19,9 @@ locked: true
 
 第一轮高了30%的评分点。
 
-![image-20260712225109622](./assets/image-20260712225109622.png)
+![多 Agent 协作 Skills 配置界面](/assets/img/posts/multi-agent-skills/setup-1.png)
 
-![image-20260712225125448](./assets/image-20260712225125448.png)
+![多 Agent 协作 Skills 配置结果](/assets/img/posts/multi-agent-skills/setup-2.png)
 
 
 
@@ -90,9 +90,9 @@ SYNC → OWN → EXECUTE → PUBLISH → CLOSE
 
 同时这个也试用于codex，claudecode，cursor等agent中
 
-![屏幕截图 2026-07-12 221118-1783868661304-3](./assets/屏幕截图 2026-07-12 221118-1783868661304-3.png)
+![多 Agent 协作 Blackboard 界面](/assets/img/posts/multi-agent-skills/blackboard-1.png)
 
-![屏幕截图 2026-07-12 221139](./assets/屏幕截图 2026-07-12 221139.png)
+![多 Agent 协作 Blackboard 运行结果](/assets/img/posts/multi-agent-skills/blackboard-2.png)
 
 ## 最后
 
