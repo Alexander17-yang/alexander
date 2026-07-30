@@ -7,6 +7,22 @@
 (function () {
   'use strict';
 
+  /* 旧版 PWA 会把每个标签页及其 CSS/JS 长期缓存，导致首页刷新后，
+   * 站内跳转仍恢复旧光标。新版本关闭离线缓存，并主动清掉旧 Chirpy 缓存。 */
+  if ('caches' in window) {
+    window.caches.keys().then(function (names) {
+      return Promise.all(
+        names
+          .filter(function (name) {
+            return name.indexOf('chirpy-') === 0;
+          })
+          .map(function (name) {
+            return window.caches.delete(name);
+          })
+      );
+    });
+  }
+
   var reduceMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
   var finePointer = window.matchMedia('(pointer: fine)').matches;
   var saveData = navigator.connection && navigator.connection.saveData === true;
