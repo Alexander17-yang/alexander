@@ -1,6 +1,5 @@
 @echo off
-chcp 65001 >nul
-title Alexander Blog 一键更新
+setlocal
 cd /d "%~dp0"
 
 powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0update-blog.ps1"
@@ -8,9 +7,9 @@ set "UPDATE_EXIT=%ERRORLEVEL%"
 
 echo.
 if not "%UPDATE_EXIT%"=="0" (
-  echo 更新过程中出现问题，请查看上方提示。
+  echo Update failed. Check the messages above.
 ) else (
-  echo 可以关闭此窗口。
+  echo Update completed. You can close this window.
 )
 pause
 exit /b %UPDATE_EXIT%
