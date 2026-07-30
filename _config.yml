@@ -23,7 +23,7 @@ timezone: Asia/Shanghai
 
 title: Alexander # the main title
 
-tagline: 每一个不曾起舞的日子，都是对Misc手的辜负。 # it will display as the subtitle
+tagline: 以智能为舟，造自主 Agent 渡算法之海。 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   用于记录的一个博客
@@ -48,11 +48,11 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: DmcforSpc
-  email: 123@qq.com # change to your email address
+  name: Alexander
+  email: 2210740339@qq.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/DmcforSpc # change to your GitHub homepage
+    - https://github.com/Alexander17-yang # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
