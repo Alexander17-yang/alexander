@@ -162,15 +162,3 @@ main a:not(.btn):not(.card):not(.post-preview):not(.nav-link):not(.dfs-plain) {
     background: var(--dfs-acc);
   }
 }
-
-/* 拖动滚动条时：恢复系统光标、隐藏自定义光标（原生滚动条拖动会吞
-   pointermove，自定义光标会冻结；此时回退系统光标才有正常反馈）。
-   双类选择器 (0,2,1) 压过 components 里 dfs-cursor-on 的 cursor:none (0,1,1)。 */
-html.dfs-cursor-on.dfs-dragging-scroll,
-html.dfs-cursor-on.dfs-dragging-scroll * {
-  cursor: auto !important;
-}
-
-html.dfs-dragging-scroll #dfs-cursor {
-  opacity: 0 !important;
-}

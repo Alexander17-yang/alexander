@@ -61,49 +61,6 @@
   will-change: auto;
 }
 
-/* 蓝色箭头光标（桌面 fine pointer + 非 PRM 时由 site.js 挂载）。
- * 定位走 translate，transform 只负责 hover / click 的缩放反馈。 */
-#dfs-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: var(--dfs-z-cursor);
-  opacity: 0;
-  width: 24px;
-  height: 30px;
-  margin: -2px 0 0 -2px;
-  background: linear-gradient(135deg, #e8f7ff 0%, #69bdff 30%, #167dff 68%, #0754d8 100%);
-  clip-path: polygon(0 0, 0 25px, 7px 18.5px, 12.2px 29px, 17px 26.7px, 11.8px 16.8px, 23px 15.8px);
-  filter:
-    drop-shadow(0 0 1px rgba(235, 248, 255, 0.95))
-    drop-shadow(0 2px 2px rgba(0, 20, 58, 0.85))
-    drop-shadow(0 0 8px rgba(40, 145, 255, 0.75));
-  transform: scale(1);
-  transform-origin: 2px 2px;
-  will-change: translate, transform;
-  transition:
-    opacity 0.16s var(--dfs-ease-out),
-    transform 0.18s var(--dfs-ease-out),
-    filter 0.18s var(--dfs-ease-out);
-
-  &.is-live {
-    opacity: 1;
-  }
-
-  &.is-live.is-hover {
-    transform: scale(1.15);
-    filter:
-      drop-shadow(0 0 1px rgba(255, 255, 255, 1))
-      drop-shadow(0 2px 2px rgba(0, 20, 58, 0.85))
-      drop-shadow(0 0 13px rgba(48, 161, 255, 0.95));
-  }
-
-  &.is-clicking {
-    transform: scale(0.82);
-  }
-}
-
 /* 点击火花：JS 在点击坐标生成一圈短粒子和中心冲击环。 */
 .dfs-click-spark,
 .dfs-click-flash {
@@ -167,11 +124,10 @@
   }
 }
 
-/* cursor:none 用 * 级联覆盖动态元素与 UA 默认（否则点标签等跳转后
-   新元素/链接会露出系统箭头） */
+/* 交给浏览器原生光标管线绘制，不再逐帧移动 DOM，跟手更稳定。 */
 html.dfs-cursor-on,
 html.dfs-cursor-on * {
-  cursor: none !important;
+  cursor: url('../img/redesign/cursor-blue.svg') 3 3, auto !important;
 }
 
 /* 阅读进度条（文章页, site.js 注入） */

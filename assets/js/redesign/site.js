@@ -287,20 +287,7 @@
     yearEls = null;
   }
 
-  /* ---- 自定义光标（桌面 fine pointer + motionOK） ---- */
-  var cursorEl = null;
-  var cursorLive = false;
-  var HOVER_SEL = 'a, button, [role="button"], input, label, summary';
-
-  function onCursorMove(e) {
-    cursorEl.style.translate = e.clientX + 'px ' + e.clientY + 'px';
-    /* 首次出现（含跳转后的新页面）直接落在指针处再淡入。 */
-    if (!cursorLive) {
-      cursorLive = true;
-      cursorEl.classList.add('is-live');
-    }
-  }
-
+  /* ---- 原生蓝色光标 + 点击火花（桌面 fine pointer + motionOK） ---- */
   function createClickSpark(x, y) {
     var colors = ['#d9f3ff', '#8fd2ff', '#48a9ff', '#167dff'];
     var count = 12;
@@ -334,82 +321,24 @@
     });
   }
 
-  /* 拖图片/链接会触发浏览器原生拖放，期间 pointermove 停发、光标冻结。
-     自定义光标下这类拖放无意义 —— 直接拦截 dragstart，任何拖动都退化为
-     文字选择（pointermove 正常派发，光标正常跟随）。 */
-  function blockNativeDrag(e) {
-    e.preventDefault();
-  }
-
-  /* 按在原生滚动条上（offset 超出内容盒 = 落在滚动条区域）→ 拖动期间
-     恢复系统光标；松开复原。解决拖横向滚动条时自定义光标冻结无反馈。 */
   function onCursorDown(e) {
-    var t = e.target;
-    if (
-      t &&
-      t.nodeType === 1 &&
-      (e.offsetX > t.clientWidth || e.offsetY > t.clientHeight)
-    ) {
-      document.documentElement.classList.add('dfs-dragging-scroll');
-      return;
-    }
-
     if (e.button === 0) {
-      cursorEl.classList.add('is-clicking');
       createClickSpark(e.clientX, e.clientY);
     }
   }
 
-  function onCursorUp() {
-    document.documentElement.classList.remove('dfs-dragging-scroll');
-    if (cursorEl) cursorEl.classList.remove('is-clicking');
-  }
-
-  /* 指针离开窗口：隐藏并复位，重新进入时同样直接落点 */
-  function onCursorLeaveDoc(e) {
-    if (!e.relatedTarget && cursorEl) {
-      cursorLive = false;
-      cursorEl.classList.remove('is-live', 'is-hover', 'is-clicking');
-    }
-  }
-
-  /* 单一 pointerover 按当前目标定态：相邻交互元素间移动时类保持不变，
-     过渡不重启 → 无「移除→重加」的闪跳 */
-  function onCursorOver(e) {
-    var hovering = !!(e.target.closest && e.target.closest(HOVER_SEL));
-    cursorEl.classList.toggle('is-hover', hovering);
-  }
-
   function setupCursor() {
     if (!finePointer || !motionOK()) return;
-    cursorEl = document.createElement('div');
-    cursorEl.id = 'dfs-cursor';
-    cursorEl.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(cursorEl);
     document.documentElement.classList.add('dfs-cursor-on');
-    window.addEventListener('pointermove', onCursorMove, { passive: true });
-    document.addEventListener('pointerover', onCursorOver, { passive: true });
-    document.addEventListener('pointerout', onCursorLeaveDoc, { passive: true });
-    document.addEventListener('dragstart', blockNativeDrag);
     document.addEventListener('pointerdown', onCursorDown, { passive: true });
-    window.addEventListener('pointerup', onCursorUp, { passive: true });
   }
 
   function teardownCursor() {
-    if (!cursorEl) return;
-    window.removeEventListener('pointermove', onCursorMove);
-    document.removeEventListener('pointerover', onCursorOver);
-    document.removeEventListener('pointerout', onCursorLeaveDoc);
-    document.removeEventListener('dragstart', blockNativeDrag);
     document.removeEventListener('pointerdown', onCursorDown);
-    window.removeEventListener('pointerup', onCursorUp);
-    document.documentElement.classList.remove('dfs-dragging-scroll');
     document.documentElement.classList.remove('dfs-cursor-on');
-    cursorEl.remove();
     document.querySelectorAll('.dfs-click-spark, .dfs-click-flash').forEach(function (el) {
       el.remove();
     });
-    cursorEl = null;
   }
 
   /* ---- PRM 运行中切换：实时销毁 ---- */
