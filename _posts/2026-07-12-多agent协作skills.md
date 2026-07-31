@@ -1,9 +1,9 @@
 ---
 title: 多 Agent 协同skills
 date: 2026-07-12
-categories: agent
+categories: skills
 tags:
-  - agent
+  - skills
 author: Alexander
 description: 从“并行调用”到“可验证协作”：为什么多 Agent 需要一块共享板块
 lock_id: post-114
