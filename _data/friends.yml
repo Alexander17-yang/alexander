@@ -6,26 +6,135 @@
 #   desc: 网站描述
 #   group: 分组名称 (可选)
 
-- name: "Alexander"
-  url: "https://www.cnblogs.com/alexander17/"
-  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251213132555_%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-12-13_212534_485.jpg"
-  desc: "全栈神"
+- name: "玫幽倩"
+  url: "https://mei-you-qian.github.io"
+  avatar: "https://mei-you-qian.github.io/img/fufu.png"
+  desc: "希望大家都越来越好"
 
-- name: "which"
-  url: "http://blog.which778.cn/"
-  avatar: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/http://blog.which778.cn/wp-content/uploads/2025/04/1744346830-头像.png"
-  desc: "Src 高手"
+- name: "Lunatic"
+  url: "https://goodlunatic.github.io/"
+  avatar: "https://www.nssctf.cn/files/2024/4/28/7f130a1387.png"
+  desc: "Mind and Hand :)"
 
-- name: "frank1q22"
-  url: "https://xz.aliyun.com/users/163736/news"
-  avatar: "https://cdn.jsdelivr.net/gh/cotes2020/chirpy-images/commons/avatar.jpg"
-  desc: "Web 高手 渗透大牛"
-  # group: "常用网站"  分组选项
+- name: "C3ngH"
+  url: "https://c3ngh.top/"
+  avatar: "https://c3ngh-blog.oss-cn-hangzhou.aliyuncs.com/img/C3ngH.jpg"
+  desc: "广告位招租"
 
-- name: "L1nq"
-  url: "https://oct1sec.top/"
-  avatar: "https://oct1sec.top/images/1.jpg"
-  desc: "技术大佬"
+- name: "f00001111"
+  url: "https://mcsog.top"
+  avatar: "https://mcsog.top/images/logo.png"
+  desc: "f00001111的学习记录"
+
+- name: "lzz0403"
+  url: "https://cnup.top"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214111906_4f38de256b686c9d0ca70ab53ffda8c4.jpg"
+  desc: "lzz学习日记"
+
+- name: "WWH"
+  url: "https://blog.iwwh.top"
+  avatar: "shturl.cc/IdHBx9SwHqNVuBUHJewe3j1pRhNJIbqgkZ41AIBLE57hVwIYSi9fXIWGTTsHZa"
+  desc: "WWH之blog"
+
+- name: "KanaDE"
+  url: "https://nacpromix.top"
+  avatar: "https://nacpromix.top/images/avatar.jpg"
+  desc: "PR0_M1X的小站"
+
+- name: "BR"
+  url: "https://blog.yzbrh.top/"
+  avatar: "https://blog.yzbrh.top/img/avatar.jpg"
+  desc: "在时光的长河中，寻找属于自己的星辰大海"
+
+- name: "n1tro"
+  url: "https://www.n1tro.site/"
+  avatar: "https://n1tro-1362041233.cos.ap-guangzhou.myqcloud.com/img/blog/wow%20you%20find%20me.jpg"
+  desc: "n1troの小破站"
+
+- name: "Jason"
+  url: "https://www.jas0n.top"
+  avatar: "https://www.jas0n.top/wp-content/uploads/2025/10/cropped-b_c2aab67e69d9794ec2632c79419b6210-180x180.jpg"
+  desc: "Jason师傅的学习小屋"
+
+- name: "Origin"
+  url: "https://origin618.github.io/"
+  avatar: "https://origin618.github.io/_astro/tupian.0gUueyDY_DxJPK.webp"
+  desc: "理解以真实为本，但真实本身并不会自动呈现"
+
+- name: "Aristore"
+  url: "https://aristore.top/"
+  avatar: "https://www.aristore.top/images/avatar.png"
+  desc: "to explore, to innovate."
+
+- name: "LamentXU"
+  url: "https://www.cnblogs.com/LAMENTXU"
+  avatar: "https://blog-static.cnblogs.com/files/blogs/820580/AVATOR.ico?t=1722096267&download=true"
+  desc: "Fly, broken wings."
+
+- name: "DFS"
+  url: "https://dmcforspc.github.io/xad/"
+  avatar: "https://dmcforspc.github.io/xad/assets/img/favicons/m.png"
+  desc: "少年没有乌托邦，心向远方自明朗"
+
+- name: "竹君子"
+  url: "https://luo-kaihong.github.io/"
+  avatar: "https://luo-kaihong.github.io/img/avatar_hu_b0f9889609c95e4e.png"
+  desc: "不视他人之得为自身之所失"
+
+- name: "TGlu"
+  url: "https://tg1u.top/"
+  avatar: "https://tg1u.top/images/favicon/favicon-96x96.png"
+  desc: "web手"
+
+- name: "saga131"
+  url: "http://happyprimes.cn/blog/"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_cd049ca52ccc442cff105ff2480c65c8.jpg"
+  desc: "虎哥"
+
+- name: "ljnljn"
+  url: "https://www.cnblogs.com/ljnljn"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_359ba4b352b7d69bfcb19fcbc83e242b.jpg"
+  desc: "ljnljn诺申"
+
+- name: "lnnn~"
+  url: "https://blog.csdn.net/2301_80727080?type=blog"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_307da3e38c1cda9888afd07af5a8cb4c.jpg"
+  desc: "取证大手子"
+
+- name: "Pr0x1ma"
+  url: "http://124.221.168.69/en/"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_e64a27f434d58e5e26353d1000b4a163.jpg"
+  desc: "Turning the whispers of time into echoes of eternity."
+
+- name: "Acc1oFl4g"
+  url: "http://45.207.195.149/"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_2fae716215396a85ad3f4a373cbb1040.jpg"
+  desc: "欲买桂花同载酒，终不似，少年游。"
+
+- name: "rbp"
+  url: "https://www.cnblogs.com/r-b-p"
+  avatar: "https://pic.cnblogs.com/avatar/3443887/20250101201232.png"
+  desc: "我的超牛的pwn师兄"
+
+- name: "墨斐斐"
+  url: "https://www.cnblogs.com/mofeifei"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080557_b_634a6f2a168ec8f794fc292861b9f292.jpg"
+  desc: "新朋友"
+
+- name: "fortune_h2c"
+  url: "https://www.cnblogs.com/fortuneh2c"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_b_e2d0e6bb04fd24ac6d6d4a927324c940.jpg"
+  desc: "web手"
+
+- name: "m1ng"
+  url: "http://blog.m1ng.fun/"
+  avatar: "https://images.cnblogs.com/cnblogs_com/blogs/835289/galleries/2431993/t_251214080330_30e07a337eef871f5a68551bf55f5f36.jpg"
+  desc: "超绝web手"
+
+- name: "t0mcater"
+  url: "https://www.cnblogs.com/t0mcater"
+  avatar: "https://pic.cnblogs.com/avatar/3660992/20250616151256.png"
+  desc: "web手"
   # group: "技术大佬"
 
 # # 如果没有 group 字段，会显示在默认分组中
