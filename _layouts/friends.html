@@ -23,7 +23,7 @@ layout: page
         <a href="{{ friend.url }}" class="friend-card-link dfs-plain" target="_blank" rel="noopener noreferrer">
           <div class="friend-card-img-wrapper">
             <img 
-              src="{{ friend.avatar }}" 
+              src="{{ friend.avatar | relative_url }}"
               alt="{{ friend.name }}" 
               class="friend-card-avatar"
               data-fallback="{{ '/assets/img/favicons/m.png' | relative_url }}"
