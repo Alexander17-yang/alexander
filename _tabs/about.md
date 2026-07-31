@@ -16,9 +16,37 @@ body_class: Alexander-about-page
 
 你好！我是 **Alexander** 👋。
 
-一名热衷于 **AI-agent** 和 **CTF** 挑战的开发者。这个博客主要用于记录我的学习笔记、技术分享以及生活中的点滴思考。
+一名热衷于 **AI-agent** 和 **CTF** 挑战的开发者。这里我的AI小站，这个博客主要用于记录我的学习笔记、技术分享以及生活中的点滴思考。
 
 > Agent 星河｜编织能独行求索的数字灵思
+
+### 💼 Experiences
+
+Senior in college @Jiangxi Police College
+
+Team Captain @**Torchwood** Team of the Jiangxi Police Academy Cyber Attack and Defense Lab
+
+misc member @[Arr3stY0u](https://ctftime.org/team/176468)
+
+The core members of the team and my buddies @[NextFa1conX]()(原CyberX)
+
+Intern Engineer&AI of Cybersecurity Research Intern @江西诚韬科技有限公司
+
+## 👨‍💻启蒙导师
+
+My misc enlightenment mentor -->[Lunatic](https://goodlunatic.github.io/)
+
+My AI agent is a safe guide -->[LOV3](https://i.cauchy.top/)
+
+Guide to the Road of Cybersecurity and Competitions -->[bookfish]()@SU
+
+## 🥬项目
+
+mcp of wireshark协议分析 ，ctf -misc mcp
+
+**NextCTF-AgentV2.5** -- AI CTF Automated Attack and Defense System and Smart Problem-Solving Agent 
+
+Various skills projects, like CTF-AWDP skills, multi-agent collaboration skills
 
 ## 🛠️ 技术栈
 
