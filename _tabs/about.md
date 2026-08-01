@@ -48,6 +48,8 @@ mcp of wireshark协议分析 ，ctf -misc mcp
 
 Various skills projects, like CTF-AWDP skills, multi-agent collaboration skills
 
+基于GZCTF的[ctf-live-solo单挑平台](http://123.56.127.21/ctf/)
+
 ## 🛠️ 技术栈
 
 - **语言**: Python, RUST, GO, HTML/CSS
